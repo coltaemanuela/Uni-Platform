@@ -1,0 +1,12 @@
+{
+    "database" :{
+        "host" : "localhost",
+        "name" : "university",
+        "username" : "root",
+        "password" : "42"
+    },
+    "sendgrid": {
+        "key":"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"
+    }
+}
+
