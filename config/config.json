@@ -3,7 +3,7 @@
         "host" : "localhost",
         "name" : "university",
         "username" : "root",
-        "password" : "42"
+        "password" : "..."
     },
     "sendgrid": {
         "key":"SG ...."
