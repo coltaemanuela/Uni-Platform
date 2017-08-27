@@ -1,0 +1,58 @@
+<body style=" background-image:url(/resources/img/background_div_home.png);  background-color: rgb(69,80,104);">
+  <% include frontend.ejs %>
+  <%include frontend1.ejs%>
+  <div class="container"  style="background-color:white; min-height:100%;">
+    <div class="row" style="margin-left:5%; margin-right: 5%;">
+      <h2 style="margin:10%; font-family: OratorStd;  text-align:center; color: #f0ad4e;">Cursul de <br/> <strong>  <%= subject.name%> </strong></h2>  
+      <div style="font-size:16px; margin-bottom:30px;">          
+        <p><label style="color:rgb(69,80,104);">Specializare: </label> <%= subject.specialization.name%></p>
+        <p><label style="color:rgb(69,80,104);">Credite:</label>  <%= subject.credit%> ECTS</p>
+      </div>
+
+      <ul class="nav nav-tabs" style="margin-bottom:30px; color: rgb(69,80,104);">          
+        <li role="presentation" class="active"><a href="#" id="materials" >Materiale</a></li>
+        <li role="presentation" ><a href="#" id="evaluation">Sistem de evaluare</a></li>
+      </ul>      
+      <div id="methods" style=" display:none;">
+        <h3 style= "matgin-top: 3%; margin-bottom: 3%; color: rgb(69,80,104);;" > Metode de evaluare</h3>
+        <% if(subject.exam === true) {%> <p>Examen</p> <%}%>
+        <% if(subject.project === true) {%> <p>Proiect</p> <%}%>
+        <% if(subject.test === true) {%> <p>Verificare pe Parcurs</p> <%}%>
+        <% if(subject.presentation === true) {%> <p>Prezentare Orala</p> <%}%>
+      </div>
+    
+    <div id="subject-materials">
+      <h3 style= "matgin-top: 3%; margin-bottom: 3%; color: rgb(69,80,104); display:inline-block;" > Materiale curs </h3>
+      
+      <% if(user.role !== 'student'){%>
+       <div style="text-align:center; width:2%; display: inline-block;">                           
+         <a href="/materials/<%= subject.id%>/add" class="glyphicon glyphicon-pencil " id="addValue" style="color: #f0ad4e; font-size:20px; margin-left: 10px; text-decoration:none;"></a>                              
+      </div>
+     <%}%>
+
+      <%if(!subject.materials){%>
+      <p>Inca nu a fost adaugat suportul de curs</p>
+      <% } else { %>
+        <%Object.keys(resObj).forEach(function (id,index) {
+          var m = resObj[id]; %>           
+          <p> <label> <%= (index+1)%> .</label>  <a href="/materials/<%= m.id%>/<%= subject.id%>/download"><%= m.file_name %></a></p>
+        <% });%>
+     <%}%>
+    </div>
+    </div>
+  </div>
+  </div>
+
+  <script>
+    $("#evaluation").click(function(){
+      $("#methods").show();
+      $("#subject-materials").hide();
+    });
+
+    $("#materials").click(function(){
+      $("#subject-materials").show();
+      $("#methods").hide();
+    });
+  </script>
+
+</body>

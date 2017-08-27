@@ -1,0 +1,26 @@
+<body>   
+<% include navbar.ejs%>
+	<div class="container">
+		<div class="row"  style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+			<table class="table">
+				<thead style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+					<tr>
+						<th>#</th>
+						<th>Nume Curs</th>					
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%	Object.keys(subjects).forEach(function (id,index) {
+						var subject = subjects[id];	%>
+						<tr>
+                            <td> <%= (index+1)%></td>
+							<td><a href="/courses/ <%= subject.id%>/view"><%=subject.name%></a></td>							
+                        </tr>
+					<% });%>	
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+

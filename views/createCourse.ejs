@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<% include frontend.ejs %>
+  </head>
+  <body>
+  	<div class="container">
+      	<div class="row">
+        	<div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:10%;">
+	          <h1 style="text-align:center; color: #f0ad4e; font-family: OratorStd;">Adauga Curs</h1><br/>  
+		        <form method="post">
+			        <input type="text" class="form-control" name="name" placeholder="Nume Curs" required="required"><br>
+			        <textarea class="form-control" name="description" placeholder="Descrierea Cursului"></textarea> <br>
+			        <select class="form-control"  name="credit">
+		                <option value="novalue">-Selectati numarul de credite-</option>
+		                <% for (var i=1; i <= 10; i++){%>
+		                	<option value="<%=i%>">  <%= i %></option>               
+		                <%}%>
+		            </select>
+			        <br>
+			         <select class="form-control"  name="specialization">
+		                <option value="novalue">-Selectati specializarea-</option>
+		                <% Object.keys(specializations).forEach(function (id) {
+         					 var specialization = specializations[id]; %>		               
+		                	<option value="<%=specialization.id%>">  <%= specialization.name %></option>               
+		                <%});%>
+		            </select><br/>
+
+		            <label>Alegeti una sau mai multe metode de evaluare: </label>
+					<div class="form-group" >
+					  <div class="col-md-4">
+					  <div class="checkbox">
+					    <label for="checkboxes-0">
+					      <input type="checkbox" name="checkbox1" id="checkboxes-0" value="examen">
+					      Examen
+					    </label>
+						</div>
+					  <div class="checkbox">
+					    <label for="checkboxes-1">
+					      <input type="checkbox" name="checkbox2" id="checkboxes-1" value="proiect" >
+					      Proiect
+					    </label>
+						</div>
+						<div class="checkbox">
+					    <label for="checkboxes-2">
+					      <input type="checkbox" name="checkbox3" id="checkboxes-2" value="verificare pe parcurs">
+					      Verificare Pe Parcurs
+					    </label>
+						</div>
+						<div class="checkbox">
+					    <label for="checkboxes-3">
+					      <input type="checkbox" name="checkbox4" id="checkboxes-3" value="prezentare orala">
+					      Prezentare orala
+					    </label>
+						</div>
+					  </div>									  
+					</div>
+<!-- 			        <textarea class="form-control" name="evaluation" placeholder="Mod de evaluare"></textarea><br/>
+ -->		       		<button type="submit" class="btn btn-block btn-warning" style=" color:white;">OK</button> 
+				</form>
+    		</div>
+        </div>
+    </div>
+	<div class="row"  style="margin-top:20%; font-family: OratorStd;">
+	 <% include footer.ejs %>
+	</div>
+  </body>
+</html>

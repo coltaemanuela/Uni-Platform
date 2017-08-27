@@ -1,0 +1,24 @@
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
+  <body>
+    <% include AdminNavbar.ejs %>                                                
+    <h1 class="page-title" align="center" style="color: #f0ad4e; font-family: OratorStd; font-size:24px; text-align: center; padding-top: 70px;">Modifica Regulamentul</h1>
+    <form method="post" action="/regulations/edit">
+      <div class="container">
+        <div class="row">
+        </div>
+        <div class="row">
+          <article class="article" style="padding-top:5%; margin-left:20%; margin-right:20%;">
+            <textarea style=" margin-top:15%;" name= "regulations" class="form-control" rows=20 columns=50>
+              <%- regulation%>
+            </textarea>
+          </article>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top:50px;">
+        <button class="btn " id="addValue"  style="color:white; background-color:#455068;" >Salveaza</button>
+        <a href="/regulations" class="btn btn-warning">Anuleaza</a>
+      </div>
+    </form>
+  </body>
+</html>

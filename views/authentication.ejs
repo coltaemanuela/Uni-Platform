@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>   
+
+<% include frontend.ejs %>
+  </head>
+  <body>
+
+    <div class="container">
+    <div class="row" >
+     <!-- <p style=" font-family: OratorStd;"> University Platform </p>-->
+     
+    </div>
+      <div class="row">
+        <div class="col col-md-6 offset-5" style="float: none;margin: 0 auto;  padding-top:15%;">
+           
+          <h1 style="text-align:center; color: #f0ad4e; font-family: OratorStd;">Autentificare</h1><br/>  
+         <!--  <form method="post" action="/users/login">    -->
+          <form method="post" action="/login">                     
+              <input type="text"  class="form-control" name="username" placeholder="email" required="required">
+              <br>              
+              <input type="password" class="form-control" name="password" placeholder="Parola" required="required">
+              <br>             
+               <br/>               
+              <button type="submit" class="btn btn-block btn-warning" style=" color:white; font-family: OratorStd;" >OK</button>
+          </form>
+            </div>
+        </div>
+      <div class="row"  style="margin-top:30%; font-family: OratorStd;">
+     <% include footer.ejs %>
+    </div>
+    </div> 
+    </div>
+  </body>
+</html>

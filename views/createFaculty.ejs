@@ -1,0 +1,56 @@
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea', });</script>
+<body>
+<% include navbar.ejs %>
+<div class="container" style=" margin-top:2%;"><br/>        
+  <a class="btn btn-warning" href="/faculties"> << Inapoi</a>    
+  	<div class="container">
+      	<div class="row">
+        	<div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:5%;">
+	          <h1 style="text-align:center; color: #455068; font-family: OratorStd;">Adauga Facultate </h1><br/>  
+		        <form method="post">
+			        <input type="text" class="form-control" name="name" placeholder="Nume Facultate" required="required"><br>
+			        <textarea class="form-control" name="description" placeholder="Descriere" rows='15'></textarea> <br>		             
+			       	<p  style="font-size:18px; color: #455068; font-family: OratorStd;"> Adaugati Specializari </p>
+					<div class="input-group" style="width:90%; margin-right:5%;">						
+						<input class="form-control" type="text"  name="specialization"  placeholder="Denumire Specializare" required="true" style="display:inline-block; width: 91%; margin-right:2%;">
+						<span class="input-group-btn" style="display: inline-block;">
+							<a class="btn btn-default glyphicon glyphicon-plus add_field_button" style="color:#455068;"></a>
+						</span>						
+					</div><br/>
+			        <button type="submit" class="btn btn-block btn-warning" style=" color:white; margin-top: 30px;">OK</button> 
+				</form>
+    		</div>
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function() {
+        var max_fields = 20; //maximum input boxes allowed
+        var wrapper = $(".input-group"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+        $(wrapper).on("click", ".add_field_button", function(e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++; //text box increment
+                $(wrapper).append('<br/><div style="float:left; margin-top:2%; width:95%;">\
+	            					<input class="form-control" type="text" name="specialization" placeholder="Denumire Specializare" style="display: inline-block;  width: 96%; margin-right:2%;" required="true"/>\
+	            					<span class="input-group-btn" style="display: inline-block;">\
+	            						<a class="btn btn-default glyphicon glyphicon-plus add_field_button" style="color:#455068; display: inline-block;"></a>\
+	            						<a class="btn btn-default glyphicon glyphicon-minus remove_field" style="color:#455068; display: inline-block;"></a>\
+            						</span>\
+        						</div><br/>');
+            }
+        });
+
+        $(wrapper).on("click", ".remove_field", function(e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+            x--;
+        });
+    });
+</script>
+  </body>

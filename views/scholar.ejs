@@ -1,0 +1,35 @@
+<body>
+<% include navbar.ejs %>
+<div class="container" style=" margin-top:5%;">
+    <div class="col-md-12 ">
+      <div class="row">                                       
+      <% Object.keys(facultyusers).forEach(function (id) {
+          var facultyuser = facultyusers[id]; %>           
+            
+             <h4 style="color: #f0ad4e; font-family: OratorStd;  whidth: 30%; display: inline-block; font-size:24px;">  <span class="glyphicon glyphicon-user" style="margin-top:30px;"></span>  &nbsp; Student </h4>
+             <hr>
+              <div >   
+                <br/>            
+                <p ><label style="color: #7E8AAA;"> Nume: </label> <%= facultyuser.user.firstname %> <%= facultyuser.user.lastName %> </p>
+                <p><label style="color: #7E8AAA;"> Specializare: </label> <%= specialization.name %></p>
+                <p><label style="color: #7E8AAA;">An studiu: </label> <%= facultyuser.uniYear %> </p>
+              </div>  
+
+              <div>
+                  <h4 style="color: #f0ad4e; font-family: OratorStd; whidth: 30%; display: inline-block; font-size:24px;"> <span class="glyphicon glyphicon-list-alt" style="margin-top:30px;  "></span> &nbsp; Situatia scolara </h4>
+             <hr>
+
+              <% Object.keys(scores).forEach(function (id) {
+                var score = scores[id];  %>
+                 <% if(score.score > 4 ){ %>
+                  <span class="glyphicon glyphicon-ok-circle" style="margin-top:30px; color:green;  "></span>&nbsp;
+                  <%}else{%>
+                  <span class="glyphicon glyphicon-ban-circle" style="margin-top:30px; color:red;  "></span>&nbsp;
+                  <%}%>
+                <label style="color: #7E8AAA;"> <%= score.subject.name%> : </label>&nbsp; <%= score.score%>                 
+                <br/>   
+           <%  });%>                 
+        <%  });%>    
+    </div>                    
+</div>
+</body>

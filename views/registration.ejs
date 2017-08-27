@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<% include frontend.ejs %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:10%;">
+          <h1 style="text-align:center; color: #f0ad4e; font-family: OratorStd;">Inregistrare</h1><br/>  
+          <form method="post" action="/users/register">             
+               <div>
+               <input type="text"  class="form-control" name="firstname" placeholder="Prenume" required="required" style="width:49%; display:inline-block;">
+               <input type="text"  class="form-control" name="lastname" placeholder="Nume" required="required" style="width:50%; display:inline-block;">
+               </div>
+              <br>
+               <input type="email"  class="form-control" name="email" placeholder="email" required="required">
+              <br>
+               <!-- <input type="password" class="form-control" name="password" placeholder="Parola" required="required">
+              <br>        -->      
+               <div>
+              <select class="form-control"  name="faculty" required="required" style="width:49%; display:inline-block;" >
+                 <option value="novalue">-Selectati Facultatea-</option>
+                  <% Object.keys(fid).forEach(function (id) {
+                  var fi = fid[id];
+                     var fn = fname[id];  %>								
+                  <option value="<%= fi%>"><%= fn%></option>            
+                  <% }); %>											     
+              </select>
+              
+              <select class="form-control"  name="specialization" required="required" style="width:49%; display:inline-block;" >
+                 <option value="novalue">-Selectati Specializarea-</option>
+                  <% Object.keys(specs).forEach(function (id) {
+                       var spec = specs[id];
+                    //if (spec.facultyId === data.id ){
+                  %>								
+                  <option value= "<%= spec.id%>" ><%= spec.name %></option>
+                  
+                  <% //}
+                  }); %>											     
+              </select>                  
+               
+               </div>
+              <br>
+                           
+               <input type="text" class="form-control" name="phone" placeholder="Numar de telefon" required="required" ><br/>
+               
+               <select class="form-control"  name="role" style="width:50%; display:inline-block;" >
+                 <option value="novalue">-Selectati rolul utilizatorului-</option>
+                 <option value="professor">Profesor</option>
+                 <option value="student">Student</option>
+                   <option value="admin">Administrator</option>
+              </select>
+              <select class="form-control"  name="yearOfStudies" style="width:49%; display:inline-block;" >
+                 <option value="novalue">-Selectati anul de studii-</option>
+                 <option value="one">   1 </option>
+                 <option value="two">   2 </option>
+                 <option value="three"> 3 </option>
+                 <option value="four">  4 </option>
+              </select>
+               
+               
+               <br/><br/>
+               
+              <button type="submit" class="btn btn-block btn-warning" style=" color:white;" >OK</button>
+          </form>
+        </div>
+      </div>
+      <div class="row"  style="margin-top:20%; font-family: OratorStd;">
+     <% include footer.ejs %>
+    </div>
+    </div>
+  </body>
+</html>

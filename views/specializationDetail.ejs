@@ -1,0 +1,52 @@
+<body style=" background-image:url(/resources/img/background_div_home.png);  background-color: rgb(69,80,104);">
+  <% include frontend.ejs %>
+  <%include frontend1.ejs%>
+  <div class="container"  style="background-color:white; min-height:100%;">
+    <div class="row" style="margin-left:5%; margin-right: 5%;">
+      <h2 style="margin:10%; font-family: OratorStd;  text-align:center; color: #f0ad4e;">Specializarea<br/> <strong>  <%= specialization.name%> </strong></h2>
+       <h4 style="color:rgb(69,80,104); font-family: OratorStd; margin-top: 3%;"> <strong> Facultatea: </strong> <%= specialization.faculty.name%></h4>
+      <h4 style="color:rgb(69,80,104); font-family: OratorStd; margin-top: 3%; "><strong> Descriere Specializare: </strong></h4>
+      <p> <%- specialization.description%></p>
+      <h4 style="color:rgb(69,80,104); font-family: OratorStd; margin-top: 3%; "> <strong>  </strong></h4>
+       
+        <ul class="nav nav-tabs" style="margin-bottom:30px; color: rgb(69,80,104);">
+          <li role="presentation" class="active"><a href="#" id="faculty">Facultate</a></li>
+          <li role="presentation"><a href="#" id="courses" >Cursuri</a></li>
+        </ul>
+
+
+      <ul id="subjects" style="display: none;">
+      <%  Object.keys(subjects).forEach(function (id) {
+          var subject= subjects[id]; %>
+          <li><a href="/courses/<%= subject.id%>/view" style="font-weight:bold; padding-bottom:10px; color: rgb(69,80,104);"> <%= subject.name %> </a></li>
+          <% var desc = subject.description; 
+          var des1 = desc.slice(0, 750); 
+          var des = des1.trim(); %>
+          <p> <%-des %>  ... <br/> <a href="/courses/<%= subject.id%>/view" style="color: #f0ad4e; text-decoration:none;" >Mai mult >> </a></p>
+      <%}); %>
+    </ul>
+    
+    <div id="facultydetails">
+    <h3 style= "matgin-top: 3%; margin-bottom: 3%; color: rgb(69,80,104);" > Facultatea de <%= specialization.faculty.name%></h3>
+    <p> <%- specialization.faculty.description%></p>
+    </div>
+
+    </div>
+  </div>
+
+
+<script>
+$("#courses").click(function(){
+    $("#subjects").show();
+    $("#facultydetails").hide();
+});
+    $("#faculty").click(function(){
+    $("#facultydetails").show();
+    $("#subjects").hide();
+});
+
+
+</script>
+
+
+</body>

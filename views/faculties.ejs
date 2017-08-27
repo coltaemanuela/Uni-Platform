@@ -1,0 +1,40 @@
+<body>   
+
+	<%if(user.role=== 'admin'){%>
+     <% include AdminNavbar.ejs%>
+     <%}else{%>
+      <% include navbar.ejs%>
+      <%}%>
+<div class="container">
+		<div class="row"  style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+		<div>
+		<%if(user.role=== 'admin'){%>
+			<a href= '/faculties/add' class="btn btn-default" style="float:right; background-color:#455068; color:white;">Adauga Facultate</a>
+		<%}%>		
+		</div>
+			<table class="table">
+				<thead style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+					<tr>
+						<th>#</th>
+						<th>Nume Facultate</th>					
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%	Object.keys(faculties).forEach(function (id,index) {
+						var faculty = faculties[id]; %>
+						<tr>
+                            <td> <%= (index+1)%></td>
+							<td><a href="/faculties/<%= faculty.id%>/view"><%=faculty.name%></a></td>	
+							<%if(user.role=== 'admin'){%>
+							<td><a href="/faculties/<%=faculty.id %>/edit" class= "glyphicon glyphicon-pencil"></a></td>
+							<td><a href="/faculties/delete/<%= faculty.id %>" class="glyphicon glyphicon-trash"></a></td>	
+							<%}%>					
+                        </tr>
+					<% });%>
+				</tbody>
+			</table>
+		</div>
+	 </div>
+</body>
+

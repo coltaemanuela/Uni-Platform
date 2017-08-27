@@ -1,0 +1,89 @@
+<body>
+<% include AdminNavbar.ejs %>
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea', });</script>
+<div class="container" style=" margin-top:5%;">
+	<form class="form-horizontal" method="post" action= '/courses/edit'>
+    	<div class="container">
+      		<div class="col-md-12 ">
+        		<div class="row">
+					<h4 style="color: #f0ad4e; font-family: OratorStd; font-size:24px; text-align: center; padding: 50px;">Modifica Detalii Curs</h4><br/>				
+						
+							
+							<input type="hidden" name="id" value= "<%= id%>">						
+							<div class="form-group">
+								<label style="color: #7E8AAA;" class="col-md-3 control-label">Nume:</label>
+								<div class="col-md-8">
+									<input type="text" class="form-control" name="name" value="<%= subject.name%>" placeholder="Nume" required="required">
+								</div>
+							</div>
+							<div class="form-group">
+								<label style="color: #7E8AAA;" class="col-md-3 control-label">Descriere:</label>
+								<div class="col-md-8">
+									<textarea  class="form-control" name="description" placeholder="Descriere" required="required" rows=16> <%- subject.description %></textarea>
+								</div>
+							</div>	
+
+							<div class="form-group">
+								<label style="color: #7E8AAA;" class="col-md-3 control-label">Numar Credite:</label>
+								<div class="col-md-8">			 
+									 <select class="form-control"  name="credit">
+						                <option value="<%= subject.credit %>"><%= subject.credit %></option>
+						                <% for (var i=1; i <= 10; i++){%>
+						                	<option value="<%=i%>">  <%= i %></option>               
+				               			<%}%>
+				            		</select>
+				            	</div>
+		            		</div>
+		            		<div class="form-group">
+								<label style="color: #7E8AAA;" class="col-md-3 control-label">Sistem de evaluare:</label>
+								<div class="form-group">
+
+									  <div class="col-md-4">
+
+									  <div class="checkbox"  	 >
+									    <label for="checkboxes-0">
+									      <input type="checkbox" name="checkbox1" <% if (subject.exam===true){ %> checked <%}else{%>  unchecked <%}%> id="checkboxes-0" value="1">
+									      Examen
+									    </label>
+										</div>
+									  <div class="checkbox">
+									    <label for="checkboxes-1">
+									      <input type="checkbox" name="checkbox2" <% if (subject.project===true){ %> checked <%}else{%>  unchecked <%}%>  id="checkboxes-1" value="2" >
+									      Proiect
+									    </label>
+										</div>
+										<div class="checkbox">
+									    <label for="checkboxes-2">
+									      <input type="checkbox" name="checkbox3" <% if (subject.test===true){ %> checked <%}else{%>  unchecked <%}%>  id="checkboxes-2" value="3">
+									      Verificare Pe Parcurs
+									    </label>
+										</div>
+										<div class="checkbox">
+									    <label for="checkboxes-3">
+									      <input type="checkbox" name="checkbox4" <% if (subject.presentation===true){ %> checked <%}else{%>  unchecked <%}%>  id="checkboxes-3" value="4">
+									      Prezentare orala
+									    </label>
+										</div>
+									  </div>									  
+								</div>
+							</div>
+
+
+						</div>
+						</div>	
+						
+						</div>
+
+		  					<div class="row" style="padding-top:30px;">          
+							    <div class="col-md-12" style="text-align:center; margin-top:50px;">															
+									<button class="btn " id="addValue" style="background-color:#7E8AAA; color:white;"> Salveaza Modificarile</button>
+							      <a class="btn btn-warning"  href="/users">Anuleaza</a><br><br>
+							    </div>            
+		  					</div>
+						
+				</div>
+	</form>
+</div>
+</body>
+</html>

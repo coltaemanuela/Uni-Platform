@@ -1,0 +1,76 @@
+<body>
+<% include AdminNavbar.ejs %>
+<div class="container" style=" margin-top:5%;"><br/>        
+  <a class="btn btn-warning"  href="/users"> << Inapoi</a><br><br>       
+  <form action="/users/edit/<%= uid%>">		
+    <div class="col-md-12 ">
+      <div class="row">       
+        <% Object.keys(facultyusers).forEach(function (id) {
+          var facultyuser = facultyusers[id];  %>
+        <h4 style="color: #f0ad4e; whidth: 30%; display: inline-block; font-family: OratorStd; font-size:24px;">Date Contact:</h4>
+        <div style="text-align:center; width:10%; display: inline-block;">
+               
+          <a href="/users/<%=facultyusers[id].user.id %>/edit" class="glyphicon glyphicon-pencil " id="addValue" style="color: #f0ad4e;"></a>
+                   
+         </div>        
+      </div>
+      <br/>
+      <div class="col-md-6" style=" display:inline-block;">             
+        <label style="color: #7E8AAA;">Nume: </label>&nbsp; <%= facultyuser.user.firstname%> <%= facultyuser.user.lastName %>                   
+        <br>
+        <label style="color: #7E8AAA;">Email: </label>&nbsp;<%= facultyuser.user.email %>                   
+        <br>
+        <label style="color: #7E8AAA;">Telefon: </label>&nbsp;<%= facultyuser.user.phone %>                          
+        <br/>                
+      </div>                    
+      <div class="col-md-6 " style=" display:inline-block;">   
+      <label style="color: #7E8AAA;">Rol: </label>&nbsp;<%= facultyuser.user.role %>                   
+                   
+             <% if( facultyuser.user.role === 'student') {%>
+               <br>  <label style="color: #7E8AAA;">Anul de studii: </label>&nbsp;
+          <%= facultyuser.uniYear%>   
+
+           
+         
+
+          <br/> <label style="color: #7E8AAA;">Facultate: </label>          
+            <%= faculties[facultyuser.facultyId].faculty.name%>        
+                
+          <br/> <label style="color: #7E8AAA;">Specializare: </label>
+
+          <%  Object.keys(specialization).forEach(function (q) {             
+               var spec = specialization[q];                    
+              if(spec.id === facultyusers[id].specializationId){ %> 
+                <%= spec.name%>
+                <input  type="hidden" name="specid" value="<%= facultyusers[id].specializationId %>">
+          <%}  });%>
+
+             <%}%>   
+           <br/> <label style="color: #7E8AAA;">Cont utilizator activ: </label>
+          <% if(facultyusers[id].user.activeAccount == 1){ %> Da  <%} 
+           if(facultyusers[id].user.activeAccount == 0){ %>Nu <%} %>
+      </div>         
+        
+      <%  });%>             
+
+      <div class="row">                                       
+      <% Object.keys(facultyusers).forEach(function (id) {
+          var facultyuser = facultyusers[id]; %>
+            <% if( facultyuser.user.role === 'student') {%>
+              <h4 style="color: #f0ad4e; font-family: OratorStd;  whidth: 30%; display: inline-block; font-size:24px;">Stuatia scolara:</h4>
+              <div style="text-align:center; width:10%; display: inline-block;">                           
+                <a href="/users/<%= uid%>/addscore" class="glyphicon glyphicon-pencil " id="addValue" style="color: #f0ad4e;"></a>                                                   
+              </div>  <br/><br/>
+              <% Object.keys(scores).forEach(function (id) {
+                var score = scores[id];  %>
+                <label style="color: #7E8AAA;"> <%= score.subject.name%> : </label>&nbsp; <%= score.score%> <br/>   
+           <%  });%>
+          <%} %>           
+    <%  });%>        
+    </div>               
+   </div>        
+  </form>
+</div>
+</body>
+      
+      

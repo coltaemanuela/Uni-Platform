@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>	
+<% include AdminNavbar.ejs %>
+</head>
+<body>	
+	<div class="container">
+	  	<div class="row">
+	    	<div class="col col-md-10" style="float: none;margin: 0 auto; padding-top:10%;">
+	          <h1 style="text-align:center; color: #455068; font-family: OratorStd; padding-bottom: 5%;">Modifica Specializarile </h1><br/>  
+		        <form method="post" action="/specializations/edit">
+		        	<input  type="hidden" name="fid" value="<%= fid%>">
+			        <div class="form-group">			        			  
+					    <%  Object.keys(specializations).forEach(function (id) {             
+				            var specialization = specializations[id]; %>
+				            <input  type="hidden" name="specid" value="<%= specialization.id%>">         
+				           
+				          
+
+							<input class="form-control" type="text"  name="specialization" value="<%= specialization.name%>"  placeholder="Denumire Specializare" required="true" style="display:inline-block; margin-bottom:2%; width: 86%;">
+							 <span class="input-group-btn-3" style="display: inline-block;">
+	            				<a class="btn btn-default glyphicon glyphicon-remove" style="color:#455068; display: inline-block;" href="/specializations/delete/<%=specialization.id%>/<%= fid%>"></a>
+            				</span>	
+							<textarea class="form-control" type="text" name="olddescription" placeholder="Descriere Specializare" style="display: inline-block;  width: 86%; margin-bottom:40px;" required="true" rows=7> <%= specialization.description%></textarea>																				    			       			        
+				        <%  });%>			        		       				
+					</div>
+			     
+			     	<div class="input-group-1" style=" margin-right:5%;">
+			        	<span class="input-group-btn" style="display: inline-block;">
+							<a class="btn btn-default glyphicon glyphicon-plus add_field_button" style="color:#455068;"></a>
+						</span>	
+					</div>
+					<div class="row">
+						<div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:10%; padding-bottom:10%">
+	    	    			<button type="submit" class="btn  btn-block btn-warning" style=" color:white;">OK</button> 
+	      			 	</div>
+	      			 </div>
+	   			</form>	
+			</div>
+	    </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function() {
+        var max_fields = 20; //maximum input boxes allowed
+        var wrapper = $(".input-group-1"); //Fields wrapper
+        var add_button = $(".add_field_button"); //Add button ID
+
+        var x = 1; //initlal text box count
+        $(wrapper).on("click", ".add_field_button", function(e) {
+            e.preventDefault();
+            if (x < max_fields) {
+                x++; //text box increment
+                $(wrapper).append('<br/><div style="float:left; margin-top:2%; margin-bottom:7%; width:95%;">\
+	            					<input class="form-control" type="text" name="newspecialization" placeholder="Denumire Specializare" style="display: inline-block;  width: 96%; margin-right:2%;" required="true"/><br/>\
+	            					<br/><textarea class="form-control" type="text" name="description" placeholder="Descriere Specializare" style="display: inline-block;  width: 96%; margin-bottom:40px; " required="true" rows=7></textarea>\
+	            					<span class="input-group-btn" style="display: inline-block; margin-top: -30px;">\
+	            						<a class="btn btn-default glyphicon glyphicon-minus remove_field" style="color:#455068; display: inline-block;"></a>\
+            						</span>\
+        						</div><br/>');
+            }
+        });
+
+        $(wrapper).on("click", ".remove_field", function(e) {
+            e.preventDefault();
+            $(this).parent().parent().remove();
+            x--;
+        });
+    });
+</script>
+</body>
+</html>

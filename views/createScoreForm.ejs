@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<% include frontend.ejs %>
+  </head>
+  <body
+	<% include AdminNavbar.ejs %>
+    	<div class="container">
+      	<div class="row">
+        	<div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:10%;">
+	          <h1 style="text-align:center; color: #f0ad4e; font-family: OratorStd; padding-bottom: 5%;">Adauga Note</h1><br/>  
+		        <form method="post" action="/users/addscore">
+			        <div class="form-group">
+			        <input type='hidden' value="<%= uid %>" name="uid">				  
+					    <%  Object.keys(fusers).forEach(function (id) {             
+				            var fuser = fusers[id]; %>	
+		                <%  Object.keys(subjects).forEach(function (e) {             
+			               	var subject = subjects[e]; %>				        
+							<label class="col-md-6 control-label" for="selectbasic" style="color:rgb(69,80,104);"> <%= subject.name%> </label>
+							<div class="col-md-4">								
+								<input type="hidden" name="sid" value="<%= subject.id %>">
+							    <select id="selectbasic" name="score" class="form-control">							      
+									<%if(!scores[e] || scores[e].score===0 ){ %>
+									<option value="novalue">-Selectati nota-</option>
+							      	<% for (var i=1; i <= 10; i++) { %>							      	   
+				                		<option value="<%=i%>">  <%= i %></option>               
+				                	<% } %>
+				                	<% } else { %>
+				                	<option value="<%= scores[e].score %>" selected> <%= scores[e].score %> </option> 
+				                	<% for (var i=1; i <= 10; i++) { %>							      	   
+				                		<option value="<%=i%>">  <%= i %></option>               
+				                	<% } %>
+				             		<% } %>
+							    </select><br/>
+							</div> <br/>							
+				        <%  });%>				        
+				        <%  });%>
+			        	<br/>	       				
+					</div><br/>
+					<div class="row">
+						<div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:10%;">
+	    	    			<button type="submit" class="btn  btn-block btn-warning" style=" color:white;">OK</button> 
+	      			 	</div>
+	      			 </div>
+       			</form>	
+    		</div>
+        </div>
+    </div>
+  </body>
+</html>

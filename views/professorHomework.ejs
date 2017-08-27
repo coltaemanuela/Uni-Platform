@@ -1,0 +1,43 @@
+<body style=" background-image:url(/resources/img/background_div_home.png); ">
+  <% include frontend.ejs %>
+  <%include frontend1.ejs%>
+  <div class="container"  style="background-color:white; min-height:100%;">
+    <div class="row">
+      <h2 style="color:rgb(69,80,104); margin-bottom: 50px; margin-top: 50px; font-family: OratorStd;"> <strong> Teme create</strong></h2><br/>
+            <table class="table">
+				<thead style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+					<tr  style="font-size:14px;">
+						<th>#</th>
+						<th>Nume Tema</th>					
+						<th>Nume Student</th>
+						<th>Email</th>					
+						<th>Progres</th>
+						<th>*Document</th>
+						<th>Nume Profesor</th>
+					</tr>
+				</thead>
+				<tbody>					  
+	             <% Object.keys(hws).forEach(function (id, index) {
+	         		 var hw = hws[id]; %>     
+						<tr  style="font-size:13px;">
+                            <td><%= (index+1)%></td>
+							<td><%= hw.name %></td>						
+							<td><%= hw.assignee.firstname %> <%= hw.assignee.lastName %> </td>
+							<td><%= hw.assignee.email %></td>	
+							<td> <% if( hw.is_submitted===true){ %> Tema finalizata si predata<%} else{%> Tema nu a fost predata inca <%}%> </td>
+							<td>
+								<% if( hw.is_submitted===true){ 
+								 	Object.keys( hw.materials).forEach(function (q) {
+	         							var m = hw.materials[q]; %>								
+										<a href="/homework/<%= hw.id%>/<%= m.id%>/download"><%= m.file_name %></a><br/>
+									<%});%>
+								<%} else{%>	 ---  <%}%> 
+							</td>
+							<td><%= hw.professor.firstname %> <%= hw.professor.lastName %> </td>
+                        </tr>
+					<% });%>
+				</tbody>
+			</table>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,44 @@
+
+<body style=" background-image:url(/resources/img/background_div_home.png); ">
+    <% include frontend.ejs %>
+     <%include frontend1.ejs%>
+
+<div class="container"  style="background-color:white; min-height:100%;">
+<div class="row">
+<h2 style="color:rgb(69,80,104);"> <strong> <%= name%> </strong></h2><br/>
+<h3 style="color:rgb(69,80,104);"><strong> Descriere Curs </strong></h3>
+<p><%- description%></p></br>
+<h3 style="color:rgb(69,80,104);"><strong> Detalii Curs </strong></h3></br>
+<p style="color:rgb(69,80,104);"> <label>Credite:</label> <%= credit %> ECTS </p>
+<p style="color:rgb(69,80,104);"> <label>Specializarea:</label> <%= specialization %></p>
+<p style="color:rgb(69,80,104);"><label>Sistem de evaluare: </label></p>
+        <% if(exam === true) {%> <p>Examen</p> <%}%>
+        <% if(project === true) {%> <p>Proiect</p> <%}%>
+        <% if(test === true) {%> <p>Verificare pe Parcurs</p> <%}%>
+        <% if(presentation === true) {%> <p>Prezentare Orala</p> <%}%>
+</div>
+<div class="row"  style="margin-top:5%;">
+  <div class="col-sm-6 col-md-6">
+    <div >
+      <img src="/resources/img/materials.png" alt="..." style="width:150px;  height:150px;">
+      <div class="caption">
+        <h3 style="color:rgb(69,80,104);">Materiale Curs <br/><strong> <%= name %>  </strong></h3>
+        <p>Aici gasesti materialele puse la dispozitie pentru cursul de  <strong> <%= name %>  </strong> </p>
+          <p><a href="/materials/<%= id%>" class="btn " role="button" style="margin-top:5%; font-family: OratorStd;  color: #f0ad4e;"><strong> Afla mai mult >> </strong></a> </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-6">
+    <div >
+      <img src="/resources/img/assignments.png" alt="..." style="width:150px; height:150px;">
+      <div class="caption">
+        <h3 style="color:rgb(69,80,104);">Temele Mele</h3>
+        <p>Incarca aici proiectele, rapoartele si temele pentru cursul de <strong> <%= name %>  </strong> </p>
+          <p><a href="/homework/<%= id%>" class="btn " role="button"  style="margin-top:5%; font-family: OratorStd;  color: #f0ad4e;"> <strong> Afla mai mult >>  </strong></a> </p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>

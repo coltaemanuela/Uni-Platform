@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include frontend.ejs %>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-6" style="float: none;margin: 0 auto; padding-top:10%;">
+              <h1 style="text-align:center; color: #f0ad4e; font-family: OratorStd;">Adauga Proiecte Curs <br/> <strong><%= subject.name %></strong> </h1><br/>  
+                <form method="post" action="/homework/add">
+                  <input type="hidden" name="id" value="<%= subject.id %>" >
+                  <input type="hidden" name="professor_id" value="<%= userid %>" >
+                    <input type="text" class="form-control" name="name" placeholder="Nume Proiect" required="required"><br>
+                    <textarea class="form-control" name="description" placeholder="Detaliere Cerinte Proiect"></textarea> <br>
+                    
+                    <br>
+                    <p><i><small>* Nota: Acest proiect va fi desemnat in mod automat tuturor studentilor care participa la cursul de <%= subject.name %></small></i></p>
+                    
+                  <button type="submit" class="btn btn-block btn-warning" style=" color:white;">OK</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row"  style="margin-top:20%; font-family: OratorStd;">
+     <% include footer.ejs %>
+    </div>
+  </body>
+</html>

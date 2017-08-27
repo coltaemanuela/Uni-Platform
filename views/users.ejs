@@ -1,0 +1,87 @@
+<body style="background-color: #455068; background-image: url(/resources/img/background_div_home.png);">   
+     <% include navbar.ejs%>
+<div class="container"  style=" background-color: white; height: 100%; ">
+	<div class="row"  style="margin-top:10%; /*color: #f0ad4e; */ /*color: #455068; */font-family: OratorStd sans-serif; margin-left:5%; margin-right:5%;">
+		
+		<div> <a style="float:right; background-color: #455068; color:white; font-family: OratorStd sans-serif;" class="btn btn-default" href="/users/register">Adauga Utilizator</a></div>
+		
+		<h2 >Studenti </h2>
+		<table class="table"  >
+			<thead style="margin-top:10%; /*color: #455068;*/ font-family: OratorStd;">
+				<tr>
+					
+					<th>Nume</th>					
+					<th>Email</th>
+					<th>Telefon</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% Object.keys(users).forEach(function (id) {
+				var user = users[id];
+				
+				if(user.role === 'student'){
+				%>
+				<tr>
+					
+					<td><a style="color: #f0ad4e;" href="/users/<%= user.id%>"><%= user.firstname %> <%= user.lastName%></a></td>					
+					<td><%= user.email %> </td>					
+					<td><%= user.phone%> </td>				 	
+				</tr>
+			<% } });%>
+			</tbody>
+		</table><br/>
+		
+		
+		<h2>Administratori </h2>
+		<table class="table"  >
+			<thead style="margin-top:10%; /*color: #455068;*/ font-family: OratorStd;">
+				<tr>
+
+					<th>Nume</th>					
+					<th>Email</th>
+					<th>Telefon</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% Object.keys(users).forEach(function (id,index) {
+				var user = users[id];
+				if(user.role === 'admin'){
+				%>
+				<tr>
+					
+					<td> <a style="color: #f0ad4e;" href="/users/<%= user.id%>"> <%= user.firstname %> <%= user.lastName%> </a> </td>					
+					<td><%= user.email %> </td>					
+					<td><%= user.phone%> </td>					
+				</tr>
+			<% } });%>
+			</tbody>
+		</table>
+		
+		<h2> Profesori </h2>
+		<table class="table"  >
+			<thead style="margin-top:10%; /*color: #455068;*/ font-family: OratorStd;">
+				<tr>
+					
+					<th>Nume</th>					
+					<th>Email</th>
+					<th>Telefon</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% Object.keys(users).forEach(function (id,index) {
+				var user = users[id];
+				if(user.role === 'professor'){
+				%>
+				<tr>
+					
+					<td><a style="color: #f0ad4e;" href="/users/<%= user.id%>"> <%= user.firstname %> <%= user.lastName%> </a> </td>					
+					<td><%= user.email %> </td>					
+					<td><%= user.phone%> </td>				 	
+				</tr>
+			<% } });%>
+			</tbody>
+		</table>
+	</div>
+	</div>
+</body>
+

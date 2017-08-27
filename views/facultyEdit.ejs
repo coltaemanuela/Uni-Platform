@@ -1,0 +1,39 @@
+
+
+<body>
+<script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({ selector:'textarea', });</script>
+<% include AdminNavbar.ejs %>
+<div class="container" >
+	<form class="form-horizontal" method="post" action= '/faculties/edit'>
+		<input type="hideen" name="id" value="<%= faculty.id %>">
+    	<div class="container">
+      		<div class="col-md-12 ">
+        		<div class="row" >
+        			<div style="background-image:url(/resources/img/city.png);/* width:200px; */height: 264px;margin: 0 auto;background-repeat: no-repeat;"></div>	
+					<div class="col-md-10">
+					<h4 style="color: #f0ad4e; font-family: OratorStd; font-size:24px; text-align: center; padding-top: 30px;">Modifica Detaliile Facultatii de <%= faculty.name%></h4><br/>
+						</div>
+					<div class="form-group">
+						<div class="col-md-10">
+							<input type="text" class="form-control" name="name" value="<%= faculty.name%>" placeholder="Nume" required="required">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-10">
+							<textarea  class="form-control" name="description" placeholder="Descriere" required="required" rows=10><%= faculty.description%></textarea>
+						</div>
+					</div>
+				</div>
+			</div>				
+		</div>
+		<div class="row" style="padding-top:30px;">          
+		    <div class="col-md-10" style="text-align:center; margin-top:50px;">															
+				<button class="btn " id="addValue" style="background-color:#7E8AAA; color:white;"> Salveaza Modificarile</button>
+		      <a class="btn btn-warning"  href="/faculties">Anuleaza</a><br><br>
+		    </div>            
+		</div>				
+	</form>
+</div>
+</body>
+</html>

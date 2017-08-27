@@ -1,0 +1,39 @@
+<body>   
+	<%if(user.role=== 'admin'){%>
+     <% include AdminNavbar.ejs%>
+     <%}else{%>
+      <% include navbar.ejs%>
+      <%}%>
+<div class="container">
+		<div class="row"  style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+		<div>
+		<%if(user.role=== 'admin'){%>
+			<a href= '/courses/add' class="btn btn-default" style="float:right; background-color:#455068; color:white;">Adauga Curs</a>
+		<%}%>		
+		</div>
+			<table class="table">
+				<thead style="margin-top:10%; color: #f0ad4e; font-family: OratorStd;">
+					<tr>
+						<th>#</th>
+						<th>Nume Curs</th>					
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<%	Object.keys(subjects).forEach(function (id,index) {
+						var subject = subjects[id];	%>
+						<tr>
+                            <td> <%= (index+1)%></td>
+							<td><a href="/courses/ <%= subject.id%>/view"><%=subject.name%></a></td>	
+							<%if(user.role=== 'admin'){%>
+							<td><a href="courses/<%= subject.id%>/edit" class= "glyphicon glyphicon-pencil"></a></td>
+							<td><a href="/courses/delete/<%= subject.id%>" class="glyphicon glyphicon-trash"></a></td>	
+							<%}%>					
+                        </tr>
+					<% });%>
+				</tbody>
+			</table>
+		</div>
+	 </div>
+</body>
+

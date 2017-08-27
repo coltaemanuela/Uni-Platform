@@ -1,0 +1,31 @@
+<body style=" background-image:url(/resources/img/background_div_home.png); ">
+  <% include frontend.ejs %>
+  <%include frontend1.ejs%>
+  <div class="container"  style="background-color:white; min-height:100%;">
+    <div class="row">
+      <h2 style="color:rgb(69,80,104);"> <strong> Temele Mele </strong></h2><br/>
+      <p ><label style="color: #7E8AAA;"> Nume: </label> <%= u.firstname %> <%= u.lastName %> </p> 
+       <% Object.keys(homework).forEach(function (id) {
+          var hw = homework[id]; %>           
+        <p ><label style="color: #7E8AAA;"> Tema: </label> <%= hw.name %> </p>
+        <p ><label style="color: #7E8AAA;"> Curs: </label> <%= hw.subject.name %> </p>
+        <p ><label style="color: #7E8AAA;"> Detalii: </label> <%= hw.description %> </p>
+        <p ><label style="color: #7E8AAA;"> Progres: </label> <%if( hw.is_submitted===true ){ %>   Finalizata si trimisa <hr> <% } else{%> Netrimisa </p>        
+
+     
+     
+
+        <h3 style="color:rgb(69,80,104); margin-top: 10%; margin-left:-20px;"> <strong> Trimite tema </strong></h3><br/>
+
+        <form method="post"  enctype="multipart/form-data" action="/homework/<%= hw.id %>/submit">
+          <div class="row">           
+            <input name="newfile" class="input-file" type="file"  multiple="multiple" > <br/>       
+            <button type="submit" class="btn" style="background-color: #455068; color:white; ">OK</button>              
+          </div>    
+        </form>
+        <hr>
+<% }%>
+          <% });%>
+    </div>
+  </div>
+</body>

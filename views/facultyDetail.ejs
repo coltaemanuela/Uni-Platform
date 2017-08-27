@@ -1,0 +1,33 @@
+<body style=" background-image:url(/resources/img/background_div_home.png); ">
+  <% include frontend.ejs %>
+  <%include frontend1.ejs%>
+  <div class="container"  style="background-color:white; min-height:100%;">
+    <div class="row">
+      <br><br>
+       <a class="btn btn-warning"  href="/faculties"> << Inapoi</a>
+      <h2 style="margin:5%; font-family: OratorStd;  text-align:center; color: #f0ad4e;"> <strong>Facultatea de <%= faculty.name%> </strong></h2>
+      <h4 style="color:rgb(69,80,104); font-family: OratorStd; margin-top: 3%; "><strong> Descriere Facultate </strong></h4>
+      <p> <%- faculty.description%></p>
+            
+      <% if(role === 'admin'){%>
+       <div style="text-align:center; width:2%; display: inline-block;">                           
+          <a href="/specializations/<%= faculty.id%>" class="glyphicon glyphicon-pencil " id="addValue" style="color: rgb(69,80,104);"></a>                                               
+        </div>
+        <%}%>
+        <h4 style="color:rgb(69,80,104); font-family: OratorStd; margin-top: 3%; display:inline-block;"> <strong> Specializari: </strong></h4>
+
+      <ul>
+      <%  Object.keys(specializations).forEach(function (id,index) {
+          var specialization= specializations[id]; %>
+          <li><a href="/specializations/specialization/<%= specialization.id %> "> <%= specialization.name %> </a> 
+              <% if(role === 'admin'){%>
+                 <div style="text-align:center; width:7%; display: inline-block;">                           
+                   <!--  <a href="/specializations/<%= specialization.id %>/edit" class="glyphicon glyphicon-pencil " id="addValue" style="color: #f0ad4e;"></a>       -->                           
+                  </div>
+              <%}%>
+          </li>
+      <%}); %>
+    </ul>
+    </div>
+  </div>
+</body>

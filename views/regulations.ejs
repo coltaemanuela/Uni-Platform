@@ -1,0 +1,27 @@
+<body> 
+<% if(role === 'student' || role === 'professor'){%>
+  <% include navbar.ejs %>    
+  <%}%>
+  <% if(role === 'admin'){%>
+  <% include AdminNavbar.ejs %> 
+  <%}%>
+  <% if(role === 'norole'){%>
+  <%include frontend1.ejs%>
+  <%}%>
+ 
+  <div class="container">
+    <div class="col-md-12 ">
+      <div class="row">
+      <article class="article-terms-privacy" style="padding-top:30px;">	
+         <% if(role === 'admin'){%>
+          <a href= '/regulations/edit' class="btn btn-default" style="float:right; background-color:#455068; margin-top:5%; color:white;">Modifica</a>
+         <%}%>
+        <h1 class="page-title" align="center" style="padding-top:5%; padding-bottom:5%; color: #f0ad4e; font-family: OratorStd">Regulament Interior</h1>  
+                                                     
+       <%- regulation%>
+      </article>   
+   </div>
+  </div>
+</div>
+</body>
+
